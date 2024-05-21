@@ -1,5 +1,6 @@
 <script lang="ts">
 	import MultiLineChart from '$lib/charts/MultiLineChart.svelte';
+	import InteractiveMap from '$lib/charts/InteractiveMap.svelte';
 </script>
 
 <div class="w-full h-24 border-b-2 flex items-center justify-center">
@@ -7,5 +8,6 @@
 </div>
 
 <div class="flex flex-col">
-	<MultiLineChart />
+	<!-- <MultiLineChart /> -->
+	<InteractiveMap />
 </div>
