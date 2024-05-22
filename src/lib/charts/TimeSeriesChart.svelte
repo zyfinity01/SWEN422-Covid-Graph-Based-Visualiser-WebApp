@@ -16,12 +16,12 @@
 
 		const x = d3
 			.scaleTime()
-			.domain(d3.extent(data, d => d.dateReported) as [Date, Date])
+			.domain(d3.extent(data, (d) => d.dateReported) as [Date, Date])
 			.range([0, width]);
 
 		const y = d3
 			.scaleLinear()
-			.domain([0, d3.max(data, d => d.newCases)] as [number, number])
+			.domain([0, d3.max(data, (d) => d.newCases)] as [number, number])
 			.nice()
 			.range([height, 0]);
 
@@ -43,8 +43,8 @@
 
 		const line = d3
 			.line<HistoricalCountryCovidModel>()
-			.x(d => x(d.dateReported))
-			.y(d => y(d.newCases));
+			.x((d) => x(d.dateReported))
+			.y((d) => y(d.newCases));
 
 		g.append('path')
 			.datum(data)
@@ -58,7 +58,9 @@
 	});
 </script>
 
-<style>
+<svg bind:this={svgElement} width={960} height={200}></svg>
+
+<style lang="postcss">
 	.axis--x path {
 		display: none;
 	}
@@ -69,5 +71,3 @@
 		stroke-width: 2px;
 	}
 </style>
-
-<svg bind:this={svgElement} width={960} height={200}></svg>
