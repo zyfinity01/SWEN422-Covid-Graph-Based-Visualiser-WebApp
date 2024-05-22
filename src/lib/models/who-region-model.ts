@@ -1,5 +1,5 @@
 export interface WhoRegionModel {
-	name: string,
+	name: string;
 	code: string;
 	color: string;
 }

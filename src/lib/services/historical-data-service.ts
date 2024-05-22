@@ -19,7 +19,7 @@ export async function loadHistoricalCovidData(): Promise<HistoricalCovidModel[]>
 
 export function filterWeeklyDataByRegion(
 	data: HistoricalCovidModel[],
-	region: WhoRegionModel,
+	region: WhoRegionModel
 ): HistoricalWhoRegionModel {
 	const filteredData = filterHistoricalCovidData(data, (d) => d.whoRegion === region.code);
 	const aggregateData = aggregateHistoricalData(filteredData, region);
@@ -33,7 +33,7 @@ export function filterWeeklyDataByRegion(
 
 function aggregateHistoricalData(
 	data: HistoricalCovidModel[],
-	region: WhoRegionModel,
+	region: WhoRegionModel
 ): HistoricalCovidModel[] {
 	const groupedByWeek = new Map<string, HistoricalCovidModel>();
 

@@ -31,7 +31,7 @@
 	export let maxBars: number;
 
 	const barSize = 48;
-	const duration = 150;
+	const duration = 50;
 
 	let ticker = '';
 	let keyframeItems: any[] = [];
@@ -59,7 +59,7 @@
 		.rangeRound([dimensions.margin.top, dimensions.margin.top + barSize * (maxBars + 1 + 0.1)])
 		.padding(0.1);
 
-	let colorScale = (_d: KeyframeRecord) => '#FF0000';
+	let colorScale = (item: any) => '#FF0000';
 
 	onMount(async () => {
 		const data = await csv(datasetUrl, ({ Country, Date_reported, Cumulative_cases }) => ({
@@ -117,7 +117,7 @@
 			return data;
 		};
 
-		const keyframes: [Date, any][] = [];
+		const keyframes: [Date, KeyframeRecord[]][] = [];
 		let ka: Date,
 			a: InternMap<string, number>,
 			kb: Date,
@@ -143,7 +143,7 @@
 		}
 
 		keyframes.push([
-			// @ts-ignore
+			// @ts-expect-error typing
 			(kfDate = new Date(kb)),
 			rank(
 				(name: string) => b.get(name) || interpolateValue(grouping.get(name) as Record[], kfDate)
@@ -167,12 +167,13 @@
 
 			ticker = formatTicker(keyframes[current][0]);
 			keyframeItems = keyframes[current++][1];
+			console.log(keyframeItems);
 
 			xScale.domain([0, keyframeItems[0].value]);
 		}, duration);
 	});
 
-	function barExit(_node: Element) {
+	function barExit(p0: SVGGElement) {
 		return {
 			duration: duration * 2,
 			css: (t: number) => {
@@ -183,7 +184,7 @@
 		};
 	}
 
-	function barEnter(_node: Element) {
+	function barEnter(p0: SVGGElement) {
 		return {
 			duration: duration * 2,
 			css: (t: number) => {
@@ -197,7 +198,7 @@
 
 <svg width="100%" height="100%" viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
 	<g fill-opacity="0.6">
-		{#each keyframeItems.slice(0, maxBars) as item, i (item.name)}
+		{#each keyframeItems.slice(0, maxBars) as item (item.name)}
 			{#if item.value > 0}
 				<g in:barEnter out:barExit>
 					<rect
@@ -235,10 +236,11 @@
 	</g>
 	{#if ticker}
 		<text
-			y={dimensions.margin.top + barSize * (maxBars - 0.45)}
+			y={dimensions.margin.top + barSize * (maxBars - 0.45) + 50}
 			x={dimensions.width - 6}
 			text-anchor="end"
 			font-weight="bold"
+			fill="#64748B"
 			font-size={`${barSize}px`}
 			dy="0.32em">{ticker}</text
 		>

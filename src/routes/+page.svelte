@@ -29,7 +29,7 @@
 		<div class="card">
 			<div class="text-center text-2xl">Cumulative cases by Country over Time</div>
 			<div class="text-center text-l text-slate-500">From the start of the pandemic to now</div>
-			<BarChartRace datasetUrl={"data/who-covid-historical.csv"} maxBars={7}/>
+			<BarChartRace datasetUrl={'data/who-covid-historical.csv'} maxBars={7} />
 		</div>
 	</div>
 

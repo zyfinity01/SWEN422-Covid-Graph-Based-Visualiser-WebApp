@@ -34,7 +34,7 @@
 
 		g.append('g')
 			.attr('class', 'axis axis--y')
-			.call(d3.axisLeft(y).tickFormat(d3.format(".2s"))) // Use ".2s" to format with SI prefix and two significant digits
+			.call(d3.axisLeft(y).tickFormat(d3.format('.2s'))) // Use ".2s" to format with SI prefix and two significant digits
 			.append('text')
 			.attr('fill', '#000')
 			.attr('transform', 'rotate(-90)')

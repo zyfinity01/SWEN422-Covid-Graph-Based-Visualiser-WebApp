@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import TimeSeriesChart from '$lib/charts/TimeSeriesChart.svelte';
-	import type { WhoRegionModel } from '$lib/models/who-region-model';
 	import {
 		filterWeeklyDataByRegion,
 		loadHistoricalCovidData
@@ -13,7 +12,7 @@
 
 	onMount(async () => {
 		let covidData = await loadHistoricalCovidData();
-		historicalRegions = whoRegions.map(x => filterWeeklyDataByRegion(covidData, x));
+		historicalRegions = whoRegions.map((x) => filterWeeklyDataByRegion(covidData, x));
 	});
 </script>
 
