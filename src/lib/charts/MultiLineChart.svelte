@@ -60,7 +60,8 @@
 			.call(d3.axisBottom(x))
 			.selectAll('text')
 			.attr('transform', 'translate(-10,0)rotate(-45)')
-			.style('text-anchor', 'end');
+			.style('text-anchor', 'end')
+			.style('font-size', '8px');
 
 		const y = d3.scaleLinear().domain([0, 140000]).range([canvasHeight, 0]).nice();
 
@@ -85,16 +86,6 @@
 			.attr('dy', '1em')
 			.style('text-anchor', 'middle')
 			.text('Deaths');
-
-		// Add Chart Title
-		svg
-			.append('text')
-			.attr('x', canvasWidth / 2)
-			.attr('y', 1)
-			.attr('text-anchor', 'middle')
-			.style('font-size', '16px')
-			.style('text-decoration', 'underline')
-			.text('Deaths by Country over Time');
 
 		const color = d3.scaleOrdinal(d3.schemeTableau10);
 
