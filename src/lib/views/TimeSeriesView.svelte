@@ -4,26 +4,27 @@
 	import type { WhoRegionModel } from '$lib/models/who-region-model';
 	import {
 		filterWeeklyDataByRegion,
-		getWhoRegionsFromData,
 		loadHistoricalCovidData
 	} from '$lib/services/historical-data-service';
+	import type { HistoricalWhoRegionModel } from '$lib/models/historical-who-region-model';
+	import { whoRegions } from '$lib/services/who-regions-service';
 
-	let whoRegions: WhoRegionModel[] = [];
+	let historicalRegions: HistoricalWhoRegionModel[] = [];
 
 	onMount(async () => {
 		let covidData = await loadHistoricalCovidData();
-		let regionNames = getWhoRegionsFromData(covidData);
-		whoRegions = regionNames.map((x) => filterWeeklyDataByRegion(covidData, x));
+		historicalRegions = whoRegions.map(x => filterWeeklyDataByRegion(covidData, x));
 	});
 </script>
 
-{#each whoRegions as whoRegion}
-	<div class="flex gap-10 mb-10 p-10 justify-center">
-		<div class="flex flex-col justify-center">
-			<div class="text-2xl">{whoRegion.whoRegion}</div>
-			<div class="text-3xl">{whoRegion.final.cumulativeCases.toLocaleString()}</div>
+{#each historicalRegions as historicalRegion}
+	<div class="flex gap-0 mt-2 p-2 justify-center">
+		<div class="flex flex-col justify-center" style="width: 170px">
+			<div class="text-1xl font-bold">{historicalRegion.region.name}</div>
+			<div class="text-3xl">{historicalRegion.final.newCases.toLocaleString()}</div>
+			<div class="text-1xl">last 7 days</div>
 		</div>
 
-		<TimeSeriesChart data={whoRegion.data} />
+		<TimeSeriesChart data={historicalRegion.data} color={historicalRegion.region.color} />
 	</div>
 {/each}

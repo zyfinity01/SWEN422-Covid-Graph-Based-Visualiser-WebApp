@@ -24,6 +24,7 @@
 	<div class="col-span-2 space-y-5">
 		<!-- Continent Stats -->
 		<div class="card">
+			<div class="text-center text-2xl">Weekly reported cases by WHO region</div>
 			<TimeSeriesView />
 		</div>
 	</div>

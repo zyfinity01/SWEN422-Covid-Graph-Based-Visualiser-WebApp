@@ -4,14 +4,16 @@
 	import type { HistoricalCountryCovidModel } from '$lib/models/historical-covid-model';
 
 	export let data: HistoricalCountryCovidModel[];
+	export let color: string;
+
 	let svgElement: SVGSVGElement;
 
 	onMount(() => {
 		const svg = d3.select(svgElement);
 
 		const margin = { top: 20, right: 30, bottom: 30, left: 40 };
-		const width = +svg.attr('width') - margin.left - margin.right;
-		const height = +svg.attr('height') - margin.top - margin.bottom;
+		const width = 600 - margin.left - margin.right;
+		const height = 200 - margin.top - margin.bottom;
 		const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
 		const x = d3
@@ -32,7 +34,7 @@
 
 		g.append('g')
 			.attr('class', 'axis axis--y')
-			.call(d3.axisLeft(y))
+			.call(d3.axisLeft(y).tickFormat(d3.format(".2s"))) // Use ".2s" to format with SI prefix and two significant digits
 			.append('text')
 			.attr('fill', '#000')
 			.attr('transform', 'rotate(-90)')
@@ -50,7 +52,7 @@
 			.datum(data)
 			.attr('class', 'line')
 			.attr('fill', 'none')
-			.attr('stroke', 'steelblue')
+			.attr('stroke', color)
 			.attr('stroke-linejoin', 'round')
 			.attr('stroke-linecap', 'round')
 			.attr('stroke-width', 1.5)
@@ -58,7 +60,7 @@
 	});
 </script>
 
-<svg bind:this={svgElement} width={960} height={200}></svg>
+<svg bind:this={svgElement} viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet"></svg>
 
 <style lang="postcss">
 	.axis--x path {
@@ -67,7 +69,6 @@
 
 	.line {
 		fill: none;
-		stroke: steelblue;
 		stroke-width: 2px;
 	}
 </style>

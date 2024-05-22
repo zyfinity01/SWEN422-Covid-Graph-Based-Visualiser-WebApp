@@ -1,4 +1,5 @@
 import type { HistoricalCountryCovidModel as HistoricalCovidModel } from '$lib/models/historical-covid-model';
+import type { HistoricalWhoRegionModel } from '$lib/models/historical-who-region-model';
 import type { WhoRegionModel } from '$lib/models/who-region-model';
 import * as d3 from 'd3';
 
@@ -18,26 +19,21 @@ export async function loadHistoricalCovidData(): Promise<HistoricalCovidModel[]>
 
 export function filterWeeklyDataByRegion(
 	data: HistoricalCovidModel[],
-	whoRegion: string
-): WhoRegionModel {
-	const filteredData = filterHistoricalCovidData(data, (d) => d.whoRegion === whoRegion);
-	const aggregateData = aggregateHistoricalData(filteredData, whoRegion);
+	region: WhoRegionModel,
+): HistoricalWhoRegionModel {
+	const filteredData = filterHistoricalCovidData(data, (d) => d.whoRegion === region.code);
+	const aggregateData = aggregateHistoricalData(filteredData, region);
 
 	return {
+		region,
 		data: aggregateData,
-		whoRegion: whoRegion,
 		final: aggregateData[aggregateData.length - 1]
 	};
 }
 
-export function getWhoRegionsFromData(data: HistoricalCovidModel[]): string[] {
-	const regions = new Set(data.map((x) => x.whoRegion));
-	return Array.from(regions);
-}
-
 function aggregateHistoricalData(
 	data: HistoricalCovidModel[],
-	whoRegion: string
+	region: WhoRegionModel,
 ): HistoricalCovidModel[] {
 	const groupedByWeek = new Map<string, HistoricalCovidModel>();
 
@@ -47,10 +43,10 @@ function aggregateHistoricalData(
 
 		if (!groupedByWeek.has(weekKey)) {
 			groupedByWeek.set(weekKey, {
-				country: whoRegion,
-				countryCode: whoRegion,
+				country: region.name,
+				countryCode: region.code,
 				dateReported: weekStart,
-				whoRegion: whoRegion,
+				whoRegion: region.code,
 				newCases: 0,
 				cumulativeCases: 0,
 				newDeaths: 0,
