@@ -16,6 +16,7 @@
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/c3": "^0.7.11",
+		"@types/country-data": "^0.0.5",
 		"@types/d3": "^7.4.3",
 		"@types/eslint": "^8.56.0",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
@@ -37,6 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"c3": "^0.7.20",
+		"country-data": "^0.0.31",
 		"d3": "^7.9.0"
 	}
 }
