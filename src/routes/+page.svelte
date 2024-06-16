@@ -4,6 +4,7 @@
 	import MultiLineChart from '$lib/charts/MultiLineChart.svelte';
 	import InteractiveMap from '$lib/charts/InteractiveMap.svelte';
 	import TimeSeriesView from '$lib/views/TimeSeriesView.svelte';
+	import MultiStackedAreaChart from '$lib/charts/MultiStackedAreaChart.svelte';
 </script>
 
 <Header title="Covid-19 World Visualizations" />
@@ -13,6 +14,11 @@
 		<!-- World Map-->
 		<div class="card">
 			<InteractiveMap />
+		</div>
+
+		<!-- Stacked Area Chart -->
+		<div class="card">
+			<MultiStackedAreaChart />
 		</div>
 
 		<!-- Multi Line Chart-->
