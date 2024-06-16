@@ -4,6 +4,7 @@
 	import MultiLineChart from '$lib/charts/MultiLineChart.svelte';
 	import InteractiveMap from '$lib/charts/InteractiveMap.svelte';
 	import TimeSeriesView from '$lib/views/TimeSeriesView.svelte';
+	import MultiStackedAreaChart from '$lib/charts/MultiStackedAreaChart.svelte';
 	import BarChartRace from '$lib/charts/BarChartRace.svelte';
 </script>
 
@@ -18,6 +19,12 @@
 			<InteractiveMap />
 		</div>
 
+		<!-- Stacked Area Chart -->
+		<div class="card">
+			<MultiStackedAreaChart />
+		</div>
+
+		<!-- Multi Line Chart-->
 		<!-- Multi Line Chart -->
 		<div class="card">
 			<div class="text-center text-2xl">Deaths by Country over Time</div>
