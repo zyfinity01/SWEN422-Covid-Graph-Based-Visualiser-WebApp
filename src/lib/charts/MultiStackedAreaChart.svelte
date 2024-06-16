@@ -30,6 +30,9 @@
     const chart = c3.generate({
       bindto: chartElement,
       size: { width: 1000, height: 300 },
+      title: {
+        text: 'COVID-19 Comparison Between Cases and Vaccinated',  // This is the title for your chart   
+      },
       data: {
         x: 'date',
         json: filteredData,
