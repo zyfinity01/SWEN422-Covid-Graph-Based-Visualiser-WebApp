@@ -1,23 +1,22 @@
-# create-svelte
+# COVID-19 Visualisation: An HCI Assignment
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Creating a project
+## Data Sources
+Data sources are saved in the [`static`](./static/) directory and contain the following:
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **WHO Historical Deaths and Cases by Country**: Death and Case statistics historically to the start of COVID-19 to current (csv). Updated Weekly. Provided under the Creative Commons License 4.0
+- **Our World in Data**: Death and Case statistics historical and latest to the start of COVID-19 to current (csv). Additional file has pre-processed data in to quarterly iterations. Provided under the Creative Commons License 4.0.
+
+
+## Get Started
+
+Install dependencies
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm install
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+### Run in development mode
 ```bash
 npm run dev
 
@@ -25,14 +24,17 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+### Building
 
-To create a production version of your app:
+To create a production version of the app:
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Design
+
+This interactive dashboard features a dynamic array of widgets that automatically adjust to fit any screen size, ensuring a seamless mobile experience. It offers a comprehensive display of COVID-19 statistics through various engaging visualizations, providing users with a clear and accessible way to monitor pandemic trends.
+
+![Dashboard Example](docs/dashboard.png)
