@@ -17,6 +17,21 @@ export async function loadHistoricalCovidData(): Promise<HistoricalCovidModel[]>
 	return data;
 }
 
+export function filterWeeklyDataByAll(
+	data: HistoricalCovidModel[],
+	region: WhoRegionModel
+): HistoricalWhoRegionModel {
+	const filteredData = filterHistoricalCovidData(data, (d) => true);
+	const aggregateData = aggregateHistoricalData(filteredData, region);
+
+	return {
+		region,
+		data: aggregateData,
+		final: aggregateData[aggregateData.length - 1]
+	};
+}
+
+
 export function filterWeeklyDataByRegion(
 	data: HistoricalCovidModel[],
 	region: WhoRegionModel

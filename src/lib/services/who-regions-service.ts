@@ -1,5 +1,11 @@
 import type { WhoRegionModel } from '$lib/models/who-region-model';
 
+export const whoWorld: WhoRegionModel = {
+	code: 'WORLD',
+	name: 'World',
+	color: '#000'
+};
+
 export const whoRegions: WhoRegionModel[] = [
 	{
 		code: 'AFRO',

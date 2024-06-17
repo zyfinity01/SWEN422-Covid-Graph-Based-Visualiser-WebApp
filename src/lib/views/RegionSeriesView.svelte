@@ -17,7 +17,7 @@
 </script>
 
 {#each historicalRegions as historicalRegion}
-	<div class="flex gap-0 mt-2 p-2 justify-center">
+	<div class="flex gap-0 mt-2 p-2 justify-center relative">
 		<div class="flex flex-col justify-center" style="width: 170px">
 			<div class="text-1xl font-bold">{historicalRegion.region.name}</div>
 			<div class="text-3xl">{historicalRegion.final.newCases.toLocaleString()}</div>
