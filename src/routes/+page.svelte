@@ -1,7 +1,8 @@
 <script lang="ts">
 	import MultiLineChart from '$lib/charts/MultiLineChart.svelte';
 	import InteractiveMap from '$lib/charts/InteractiveMap.svelte';
-	import TimeSeriesView from '$lib/views/TimeSeriesView.svelte';
+	import WorldTimeSeriesView from '$lib/views/WorldTimeSeriesView.svelte';
+	import RegionTimeSeriesView from '$lib/views/RegionSeriesView.svelte';
 	import MultiStackedAreaChart from '$lib/charts/MultiStackedAreaChart.svelte';
 	import BarChartRace from '$lib/charts/BarChartRace.svelte';
 	import Navigation from '$lib/Navigation.svelte';
@@ -34,11 +35,18 @@
 	</div>
 
 	<div class="lg:col-span-2 space-y-5">
+		<!-- World Stats -->
+		<div class="card">
+			<div class="text-center text-2xl text-slate-900">Weekly reported cases for total world</div>
+			<WorldTimeSeriesView />
+		</div>
+
 		<!-- Continent Stats -->
 		<div class="card">
 			<div class="text-center text-2xl text-slate-900">Weekly reported cases by WHO region</div>
-			<TimeSeriesView />
+			<RegionTimeSeriesView />
 		</div>
+
 		<!-- Bar Chart Race -->
 		<div class="card">
 			<div class="text-center text-2xl text-slate-900">Cumulative cases by Country over Time</div>
