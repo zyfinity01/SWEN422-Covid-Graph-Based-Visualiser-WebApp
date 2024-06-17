@@ -7,6 +7,7 @@
 	export let color: string;
 
 	let svgElement: SVGSVGElement;
+	let tooltip: HTMLDivElement;
 
 	onMount(() => {
 		const svg = d3.select(svgElement);
@@ -57,10 +58,31 @@
 			.attr('stroke-linecap', 'round')
 			.attr('stroke-width', 1.5)
 			.attr('d', line);
+
+		// Add circles to each data point
+		g.selectAll('.dot')
+			.data(data)
+			.enter().append('circle')
+			.attr('class', 'dot')
+			.attr('cx', d => x(d.dateReported))
+			.attr('cy', d => y(d.newCases))
+			.attr('r', 3)
+			.attr('fill', color)
+			.on('mouseover', (event, d) => {
+				const [x, y] = d3.pointer(event);
+				tooltip.style.left = `${x + 180}px`;
+				tooltip.style.top = `${y + 10}px`;
+				tooltip.style.display = 'inline-block';
+				tooltip.innerHTML = `New Cases: ${d.newCases.toLocaleString()}`;
+			})
+			.on('mouseout', () => {
+				tooltip.style.display = 'none';
+			});
 	});
 </script>
 
 <svg bind:this={svgElement} viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet"></svg>
+<div bind:this={tooltip} class="tooltip" style="display: none;"></div>
 
 <style lang="postcss">
 	.axis--x path {
@@ -70,5 +92,19 @@
 	.line {
 		fill: none;
 		stroke-width: 2px;
+	}
+
+	.dot {
+		cursor: pointer;
+	}
+
+	.tooltip {
+		position: absolute;
+		background: white;
+		border: 1px solid #ccc;
+		padding: 10px;
+		border-radius: 3px;
+		pointer-events: none;
+		font-size: 16px;
 	}
 </style>
