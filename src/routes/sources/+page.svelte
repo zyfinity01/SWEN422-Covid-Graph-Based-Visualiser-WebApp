@@ -13,7 +13,7 @@
 		<img
 			src="https://avatars.githubusercontent.com/u/14187135?s=200&v=4"
 			alt="Our World in Data"
-			class="h-[200px] rounded-l-xl hidden lg:visible"
+			class="h-[200px] rounded-l-xl hidden md:block"
 		/>
 		<div class="flex flex-col mx-5 my-3">
 			<h2 class="text-xl font-semibold text-slate-800">Our World in Data</h2>
@@ -51,7 +51,7 @@
 		<img
 			src="https://acslm.ie/wp-content/uploads/2020/03/WHO-Logo.jpg"
 			alt="Our World in Data"
-			class="h-[200px] w-30 rounded-l-xl hidden lg:visible"
+			class="h-[200px] w-30 rounded-l-xl hidden md:block"
 		/>
 		<div class="flex flex-col mx-5 my-3">
 			<h2 class="text-xl font-semibold text-slate-800">World Health Organisation</h2>
